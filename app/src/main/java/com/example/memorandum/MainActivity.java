@@ -33,13 +33,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Toolbar
         setSupportActionBar(toolbar);
         setTitle("");
-        toolbar.setNavigationIcon(R.drawable.menu);
 
         //Navigation Drawer Menu Toggle
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
         navigationView.setNavigationItemSelectedListener(this);
 
