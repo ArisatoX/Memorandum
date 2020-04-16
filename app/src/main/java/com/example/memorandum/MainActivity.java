@@ -2,7 +2,9 @@ package com.example.memorandum;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
@@ -12,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     //Variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-//    Toolbar toolbar;
+    Toolbar toolbar;
 
     //Main
     @Override
@@ -23,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
         //Hooks
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-//        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         //Toolbar
+        setSupportActionBar(toolbar);
 
-//
-//        //Navigation Drawer Menu
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
+        //Navigation Drawer Menu
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
 
     }
