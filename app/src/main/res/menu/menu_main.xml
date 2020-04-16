@@ -3,30 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.memorandum.MainActivity">
 
+    //Menu items
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Notes"
             android:title="Notes"
-            app:showAsAction="never"
+            android:icon="@drawable/notes"
             />
 
         <item
             android:id="@+id/Checklist"
             android:title="Checklist"
-            app:showAsAction="never"
+            android:icon="@drawable/checklist"
             />
 
         <item
             android:id="@+id/Schedule"
             android:title="Schedule"
-            app:showAsAction="never"
+            android:icon="@drawable/schedule"
             />
 
         <item
             android:id="@+id/Reminder"
             android:title="Reminder"
-            app:showAsAction="never"
+            android:icon="@drawable/reminder"
             />
+
+        <item
+            android:id="@+id/Switch"
+            android:title="Switch User"
+            android:icon="@drawable/logout"
+            />
+
     </group>
 
 
