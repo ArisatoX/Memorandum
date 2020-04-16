@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Toolbar
         setSupportActionBar(toolbar);
         setTitle("");
+        toolbar.setNavigationIcon(R.drawable.menu);
 
-        //Navigation Drawer Menu
+        //Navigation Drawer Menu Toggle
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.addDrawerListener(toggle);
