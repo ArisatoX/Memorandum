@@ -1,5 +1,6 @@
 package com.example.memorandum;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.Notes);
     }
 
     //Click back -> close drawer
@@ -63,6 +65,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //To click menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        //Item Switch
+        switch (menuItem.getItemId())
+        {
+            case R.id.Notes:
+                break;
+            case R.id.Checklist:
+                Intent intent = new Intent(MainActivity.this, ChecklistActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
