@@ -98,7 +98,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                             android:layout_below="@id/imageView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name"
+                            android:text="Checklist"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -133,7 +133,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                             android:layout_below="@id/imageView1"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name1"
+                            android:text="Checklist1"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -184,7 +184,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
                             android:layout_below="@id/imageView2"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name2"
+                            android:text="Checklist2"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -219,7 +219,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -227,7 +227,7 @@
                             android:layout_below="@id/imageView3"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name3"
+                            android:text="Checklist3"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -270,7 +270,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -278,7 +278,7 @@
                             android:layout_below="@id/imageView4"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name4"
+                            android:text="Checklist4"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -305,7 +305,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:srcCompat="@drawable/note" />
+                            app:srcCompat="@drawable/checklist" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -313,7 +313,7 @@
                             android:layout_below="@id/imageView5"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name5"
+                            android:text="Checklist5"
                             android:textSize="24sp" />
 
                     </RelativeLayout>

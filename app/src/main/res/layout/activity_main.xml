@@ -106,7 +106,7 @@
                             android:layout_below="@id/imageView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name"
+                            android:text="Note"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -141,7 +141,7 @@
                             android:layout_below="@id/imageView1"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name1"
+                            android:text="Note1"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -192,7 +192,7 @@
                             android:layout_below="@id/imageView2"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name2"
+                            android:text="Note2"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -227,7 +227,7 @@
                             android:layout_below="@id/imageView3"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name3"
+                            android:text="Note3"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -278,7 +278,7 @@
                             android:layout_below="@id/imageView4"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name4"
+                            android:text="Note4"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
@@ -313,7 +313,7 @@
                             android:layout_below="@id/imageView5"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Name5"
+                            android:text="Note5"
                             android:textSize="24sp" />
 
                     </RelativeLayout>
