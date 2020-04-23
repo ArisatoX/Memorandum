@@ -13,7 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class ChecklistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //Variables
     DrawerLayout drawerLayout;
@@ -24,7 +24,7 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checklist);
+        setContentView(R.layout.activity_schedule);
 
         //Hooks
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -47,7 +47,7 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.Checklists);
+        navigationView.setCheckedItem(R.id.Schedule);
     }
 
     //Click back -> close drawer
@@ -70,14 +70,14 @@ public class ChecklistActivity extends AppCompatActivity implements NavigationVi
         switch (menuItem.getItemId())
         {
             case R.id.Notes:
-                Intent notes = new Intent(ChecklistActivity.this, MainActivity.class);
+                Intent notes = new Intent(ScheduleActivity.this, MainActivity.class);
                 startActivity(notes);
                 break;
             case R.id.Checklists:
+                Intent checklists = new Intent(ScheduleActivity.this, ChecklistActivity.class);
+                startActivity(checklists);
                 break;
             case R.id.Schedule:
-                Intent schedule = new Intent(ChecklistActivity.this, ScheduleActivity.class);
-                startActivity(schedule);
                 break;
         }
 

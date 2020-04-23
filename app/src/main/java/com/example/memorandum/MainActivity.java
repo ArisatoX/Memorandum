@@ -71,9 +71,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             case R.id.Notes:
                 break;
-            case R.id.Checklist:
-                Intent intent = new Intent(MainActivity.this, ChecklistActivity.class);
-                startActivity(intent);
+            case R.id.Checklists:
+                Intent checklists = new Intent(MainActivity.this, ChecklistActivity.class);
+                startActivity(checklists);
+                break;
+            case R.id.Schedule:
+                Intent schedule = new Intent(MainActivity.this, ScheduleActivity.class);
+                startActivity(schedule);
                 break;
         }
 

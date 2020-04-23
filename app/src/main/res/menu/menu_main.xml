@@ -13,7 +13,7 @@
             />
 
         <item
-            android:id="@+id/Checklist"
+            android:id="@+id/Checklists"
             android:title="Checklist"
             android:icon="@drawable/checklists"
             />
