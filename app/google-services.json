@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "618483396798",
+    "firebase_url": "https://memorandum-e14df.firebaseio.com",
+    "project_id": "memorandum-e14df",
+    "storage_bucket": "memorandum-e14df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618483396798:android:32a7d0e62ed2fe1742eeef",
+        "android_client_info": {
+          "package_name": "com.example.memorandum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618483396798-ammv7apu83q4r28urnsgsde4btp3rcvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.memorandum",
+            "certificate_hash": "22f662d2cab5f2bd8b742729715d355df3f9e3d8"
+          }
+        },
+        {
+          "client_id": "618483396798-37041v1if4s2pd44ku1c3v8cj7qamhrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWePK4F5tN4zWszIIB_7phSHMUJG-ucc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618483396798-37041v1if4s2pd44ku1c3v8cj7qamhrr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
