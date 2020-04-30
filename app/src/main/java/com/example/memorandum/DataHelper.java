@@ -2,6 +2,7 @@ package com.example.memorandum;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -43,5 +44,11 @@ public class DataHelper extends SQLiteOpenHelper {
             return false;
         }
         else return true;
+    }
+
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT title from " + TABLE_NAME, null);
+        return res;
     }
 }
