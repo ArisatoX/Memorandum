@@ -51,4 +51,5 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT title from " + TABLE_NAME, null);
         return res;
     }
+
 }

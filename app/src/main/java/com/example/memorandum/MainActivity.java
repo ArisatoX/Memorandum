@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //Variables
@@ -23,7 +25,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     Button addNote;
-    LinearLayout gridItems;
+    GridView gridItems;
+
+    //Testing
+    String[] numberWord = {"One", "Two", "Three", "Four"};
+    public static ArrayList<String> notesArray = new ArrayList<String>();
 
     //Database Variables
     DataHelper notesDatabase;
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         addNote = findViewById(R.id.addNote);
-
+        gridItems = findViewById(R.id.gridItems);
 
         //Database
         notesDatabase = new DataHelper(this);
@@ -51,8 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
                 startActivity(intent);
             }
-
         });
+
+        //Grid View Settings
 
 
         //Toolbar
