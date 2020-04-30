@@ -3,7 +3,8 @@ package com.example.memorandum;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,7 +21,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    TextView testDatabase; // Test Database
+    Button addNote;
+
+    //Database Variables
+    DataHelper notesDatabase;
 
     //Main
     @Override
@@ -32,6 +36,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        addNote = findViewById(R.id.addNote);
+
+        //Database
+        notesDatabase = new DataHelper(this);
+
+        //Add note
+        addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
 
         //Toolbar
