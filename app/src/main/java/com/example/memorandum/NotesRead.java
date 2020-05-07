@@ -2,7 +2,6 @@ package com.example.memorandum;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NotesRead extends AppCompatActivity {
 
     //Variables
-    TextView name;
-    ImageView image;
+    TextView title;
+    TextView content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +18,11 @@ public class NotesRead extends AppCompatActivity {
         setContentView(R.layout.activity_notes_read);
 
         //Hooks
-        name = findViewById(R.id.gridData);
-        image = findViewById(R.id.gridImage);
+        title = findViewById(R.id.noteReadTitle);
+        content = findViewById(R.id.noteReadContent);
 
         Intent intent = getIntent();
-        name.setText(intent.getStringExtra("name"));
-        image.setImageResource(intent.getIntExtra("image", 0));
+        title.setText(intent.getStringExtra("title"));
+        content.setText(intent.getStringExtra("content"));
     }
 }

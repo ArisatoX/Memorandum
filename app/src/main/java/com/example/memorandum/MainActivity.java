@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +20,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //Variables
@@ -30,11 +32,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button addNote;
     GridView gridView;
 
-    String[] noteNames = {"Note", "Note1", "Note2", "Note3", "Note4"};
-    int[] noteImages = {R.drawable.note, R.drawable.note, R.drawable.note, R.drawable.note, R.drawable.note };
-
     //Database Variables
     DataHelper notesDatabase;
+    public static ArrayList<String> ArrayOfName = new ArrayList<String>();
+    public static ArrayList<String> ArrayOfContent = new ArrayList<String>();
 
     //Main
     @Override
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //List note
+        List<Notes> contacts = notesDatabase.getAllNotes();
+
         //Grid View Settings
         CustomAdapter customAdapter = new CustomAdapter();
         gridView.setAdapter(customAdapter);
@@ -69,10 +73,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(getApplicationContext(),fruitNames[i],Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), NotesRead.class);
-                intent.putExtra("name",noteNames[i]);
-                intent.putExtra("image",noteImages[i]);
+                intent.putExtra("title", ArrayOfName.get(i));
+                intent.putExtra("content",ArrayOfContent.get(i));
                 startActivity(intent);
-
             }
         });
 
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return noteImages.length;
+            return ArrayOfName.size();
         }
 
         @Override
@@ -152,11 +155,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public View getView(int i, View view, ViewGroup viewGroup) {
             View view1 = getLayoutInflater().inflate(R.layout.notes_data,null);
             //getting view in row_data
-            TextView name = view1.findViewById(R.id.fruits);
-            ImageView image = view1.findViewById(R.id.images);
+            TextView title = view1.findViewById(R.id.noteDataTitle);
+            title.setText(ArrayOfName.get(i));
 
-            name.setText(noteNames[i]);
-            image.setImageResource(noteImages[i]);
             return view1;
 
         }
