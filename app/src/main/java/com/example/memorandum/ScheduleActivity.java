@@ -20,6 +20,7 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener {
@@ -30,6 +31,14 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
     Toolbar toolbar;
     Button dateButton;
     TextView dateText;
+    Button addSchedule;
+
+    //Database Variables
+    ScheduleHelper scheduleDatabase;
+    public static ArrayList<String> ArrayOfId = new ArrayList<String>();
+    public static ArrayList<String> ArrayOfTitle = new ArrayList<String>();
+    public static ArrayList<String> ArrayOfDate = new ArrayList<String>();
+    public static ArrayList<String> ArrayOfDone = new ArrayList<String>();
 
     //Main
     @Override
@@ -43,6 +52,10 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         toolbar = findViewById(R.id.toolbar);
         dateButton = findViewById(R.id.dateButton);
         dateText = findViewById(R.id.dateText);
+        addSchedule = findViewById(R.id.addSchedule);
+
+        //Database
+        scheduleDatabase = new ScheduleHelper(this);
 
         //Toolbar
         setSupportActionBar(toolbar);
@@ -68,6 +81,15 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
             public void onClick (View v){
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(), "Date Picker");
+            }
+        });
+
+        //Add Schedule
+        addSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent(ScheduleActivity.this, CreateSchedule.class);
+                startActivity(intent);
             }
         });
     }
