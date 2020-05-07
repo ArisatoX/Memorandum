@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Database Variables
     DataHelper notesDatabase;
+    public static ArrayList<String> ArrayOfId = new ArrayList<String>();
     public static ArrayList<String> ArrayOfName = new ArrayList<String>();
     public static ArrayList<String> ArrayOfContent = new ArrayList<String>();
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(getApplicationContext(),fruitNames[i],Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), NotesRead.class);
+                intent.putExtra("id", ArrayOfId.get(i));
                 intent.putExtra("title", ArrayOfName.get(i));
                 intent.putExtra("content",ArrayOfContent.get(i));
                 startActivity(intent);
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         //List note
+        ArrayOfId.clear();
         ArrayOfName.clear();
         ArrayOfContent.clear();
         List<Notes> contacts = notesDatabase.getAllNotes();
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return ArrayOfName.size();
+            return ArrayOfId.size();
         }
 
         @Override

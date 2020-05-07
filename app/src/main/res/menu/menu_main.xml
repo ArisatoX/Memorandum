@@ -30,12 +30,6 @@
             android:icon="@drawable/reminder"
             />
 
-        <item
-            android:id="@+id/Switch"
-            android:title="Switch User"
-            android:icon="@drawable/logout"
-            />
-
     </group>
 
 

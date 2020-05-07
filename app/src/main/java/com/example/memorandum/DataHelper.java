@@ -82,8 +82,10 @@ public class DataHelper extends SQLiteOpenHelper {
                 note.setTitle(cursor.getString(1));
                 note.setContent(cursor.getString(2));
 
+                String id = cursor.getString(0).toString();
                 String title = cursor.getString(1);
                 String content = cursor.getString(2);
+                MainActivity.ArrayOfId.add(id);
                 MainActivity.ArrayOfName.add(title);
                 MainActivity.ArrayOfContent.add(content);
                 // Adding contact to list
@@ -96,16 +98,18 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     // Updating single note
-    public int updateNotes(Notes notes) {
+    public boolean updateNotes(String id, String title, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COL_2, notes.getTitle());
-        values.put(COL_3, notes.getContent());
+        values.put(COL_1, id);
+        values.put(COL_2, title);
+        values.put(COL_3, content);
+
+        db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
 
         // updating row
-        return db.update(TABLE_NAME, values, COL_1 + " = ?",
-                new String[] { String.valueOf(notes.getID()) });
+        return true;
     }
 
     // Deleting single contact

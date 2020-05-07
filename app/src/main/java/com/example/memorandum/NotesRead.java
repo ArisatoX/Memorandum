@@ -16,6 +16,7 @@ public class NotesRead extends AppCompatActivity {
     Button noteBack;
     Button noteUpdate;
     Button noteDelete;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class NotesRead extends AppCompatActivity {
 
         //Set Text
         Intent intent = getIntent();
+        id = getIntent().getStringExtra("id");
         title.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
 
@@ -48,6 +50,9 @@ public class NotesRead extends AppCompatActivity {
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(NotesRead.this, NotesUpdate.class);
+                intent.putExtra("id", id);
+                intent.putExtra("title", title.getText().toString());
+                intent.putExtra("content", content.getText().toString());
                 startActivity(intent);
             }
         });
