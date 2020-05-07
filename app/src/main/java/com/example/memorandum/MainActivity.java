@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,8 +20,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //Variables
@@ -25,11 +27,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     Button addNote;
-    GridView gridItems;
+    GridView gridView;
 
-    //Testing
-    String[] numberWord = {"One", "Two", "Three", "Four"};
-    public static ArrayList<String> notesArray = new ArrayList<String>();
+    String[] noteNames = {"Note", "Note1", "Note2", "Note3", "Note4"};
+    int[] noteImages = {R.drawable.note, R.drawable.note, R.drawable.note, R.drawable.note, R.drawable.note };
 
     //Database Variables
     DataHelper notesDatabase;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         addNote = findViewById(R.id.addNote);
-        gridItems = findViewById(R.id.gridItems);
+        gridView = findViewById(R.id.gridView);
 
         //Database
         notesDatabase = new DataHelper(this);
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         //Grid View Settings
-
+        CustomAdapter customAdapter = new CustomAdapter();
+        gridView.setAdapter(customAdapter);
 
         //Toolbar
         setSupportActionBar(toolbar);
@@ -115,6 +117,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    //Grid View Adapter
+    private class CustomAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return noteImages.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View view1 = getLayoutInflater().inflate(R.layout.notes_data,null);
+            //getting view in row_data
+            TextView name = view1.findViewById(R.id.fruits);
+            ImageView image = view1.findViewById(R.id.images);
+
+            name.setText(noteNames[i]);
+            image.setImageResource(noteImages[i]);
+            return view1;
+
+
+
+        }
     }
 
 }
