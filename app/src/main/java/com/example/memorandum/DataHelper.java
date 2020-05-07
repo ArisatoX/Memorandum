@@ -82,7 +82,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 note.setTitle(cursor.getString(1));
                 note.setContent(cursor.getString(2));
 
-                String id = cursor.getString(0).toString();
+                String id = cursor.getString(0);
                 String title = cursor.getString(1);
                 String content = cursor.getString(2);
                 MainActivity.ArrayOfId.add(id);
@@ -113,11 +113,13 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     // Deleting single contact
-    public void deleteContact(Notes notes) {
+    public boolean deleteNotes(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COL_1 + " = ?",
-                new String[] { String.valueOf(notes.getID()) });
+                new String[] { id });
         db.close();
+
+        return true;
     }
 
 }

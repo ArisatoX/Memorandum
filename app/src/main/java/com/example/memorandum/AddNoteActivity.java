@@ -1,5 +1,6 @@
 package com.example.memorandum;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,9 @@ public class AddNoteActivity extends AppCompatActivity {
                     Toast.makeText(AddNoteActivity.this, "Your note has been saved", Toast.LENGTH_LONG).show();
                 }
                 else Toast.makeText(AddNoteActivity.this, "Error Occurred", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(AddNoteActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,9 @@ public class NotesRead extends AppCompatActivity {
     Button noteDelete;
     String id;
 
+    //Database Variables
+    DataHelper notesDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,9 @@ public class NotesRead extends AppCompatActivity {
         noteBack = findViewById(R.id.noteBack);
         noteUpdate = findViewById(R.id.noteUpdate);
         noteDelete = findViewById(R.id.noteDelete);
+
+        //Database
+        notesDatabase = new DataHelper(this);
 
         //Set Text
         Intent intent = getIntent();
@@ -53,6 +60,22 @@ public class NotesRead extends AppCompatActivity {
                 intent.putExtra("id", id);
                 intent.putExtra("title", title.getText().toString());
                 intent.putExtra("content", content.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        //Delete
+        noteDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+
+                boolean isDeleted = notesDatabase.deleteNotes(id);
+                if (isDeleted== true){
+                    Toast.makeText(NotesRead.this, "Your note has been deleted", Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(NotesRead.this, MainActivity.class);
                 startActivity(intent);
             }
         });
