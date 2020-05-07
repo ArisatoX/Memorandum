@@ -53,20 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Database
         notesDatabase = new DataHelper(this);
 
-        //Add note
-        addNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //List note
-        List<Notes> contacts = notesDatabase.getAllNotes();
-
         //Grid View Settings
+
         CustomAdapter customAdapter = new CustomAdapter();
+
         gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,6 +68,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+
+        //Add note
+        addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //List note
+        ArrayOfName.clear();
+        ArrayOfContent.clear();
+        List<Notes> contacts = notesDatabase.getAllNotes();
+        customAdapter.notifyDataSetChanged();
 
         //Toolbar
         setSupportActionBar(toolbar);
@@ -153,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
+
             View view1 = getLayoutInflater().inflate(R.layout.notes_data,null);
             //getting view in row_data
             TextView title = view1.findViewById(R.id.noteDataTitle);
