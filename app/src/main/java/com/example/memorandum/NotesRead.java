@@ -14,6 +14,8 @@ public class NotesRead extends AppCompatActivity {
     TextView title;
     TextView content;
     Button noteBack;
+    Button noteUpdate;
+    Button noteDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class NotesRead extends AppCompatActivity {
         title = findViewById(R.id.noteReadTitle);
         content = findViewById(R.id.noteReadContent);
         noteBack = findViewById(R.id.noteBack);
+        noteUpdate = findViewById(R.id.noteUpdate);
+        noteDelete = findViewById(R.id.noteDelete);
 
         //Set Text
         Intent intent = getIntent();
@@ -35,6 +39,15 @@ public class NotesRead extends AppCompatActivity {
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(NotesRead.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Update
+        noteUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent(NotesRead.this, NotesUpdate.class);
                 startActivity(intent);
             }
         });

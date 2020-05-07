@@ -6,6 +6,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.memorandum.NotesRead">
 
+    <Button
+        android:id="@+id/noteDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="109dp"
+        android:background="@drawable/delete"
+        android:padding="10dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/noteReadContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/noteUpdate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/noteUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="109dp"
+        android:background="@drawable/update"
+        android:padding="10dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/noteReadContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/noteReadTitle"
         android:layout_width="wrap_content"

@@ -95,4 +95,25 @@ public class DataHelper extends SQLiteOpenHelper {
         return notesList;
     }
 
+    // Updating single note
+    public int updateNotes(Notes notes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COL_2, notes.getTitle());
+        values.put(COL_3, notes.getContent());
+
+        // updating row
+        return db.update(TABLE_NAME, values, COL_1 + " = ?",
+                new String[] { String.valueOf(notes.getID()) });
+    }
+
+    // Deleting single contact
+    public void deleteContact(Notes notes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COL_1 + " = ?",
+                new String[] { String.valueOf(notes.getID()) });
+        db.close();
+    }
+
 }
