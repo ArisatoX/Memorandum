@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -63,6 +64,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Grid View Settings
         CustomAdapter customAdapter = new CustomAdapter();
         gridView.setAdapter(customAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(getApplicationContext(),fruitNames[i],Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), NotesRead.class);
+                intent.putExtra("name",noteNames[i]);
+                intent.putExtra("image",noteImages[i]);
+                startActivity(intent);
+
+            }
+        });
 
         //Toolbar
         setSupportActionBar(toolbar);
@@ -146,8 +158,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             name.setText(noteNames[i]);
             image.setImageResource(noteImages[i]);
             return view1;
-
-
 
         }
     }
