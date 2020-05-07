@@ -2,6 +2,7 @@ package com.example.memorandum;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class NotesRead extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         title.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
+        content.setMovementMethod(new ScrollingMovementMethod());
 
         // Back Button
         noteBack.setOnClickListener(new View.OnClickListener() {
