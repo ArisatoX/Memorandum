@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getApplicationContext(),fruitNames[i],Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), NotesRead.class);
                 intent.putExtra("id", ArrayOfId.get(i));
                 intent.putExtra("title", ArrayOfName.get(i));

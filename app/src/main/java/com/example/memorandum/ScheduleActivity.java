@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -38,6 +40,8 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
     Button addSchedule;
     GridView gridView;
     Button scheduleDelete;
+    String id;
+    CheckBox scheduleDataCheckbox;
 
     //Database Variables
     ScheduleHelper scheduleDatabase;
@@ -61,6 +65,7 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         addSchedule = findViewById(R.id.addSchedule);
         gridView = findViewById(R.id.gridViewSchedule);
         scheduleDelete = findViewById(R.id.scheduleDelete);
+        scheduleDataCheckbox = findViewById(R.id.scheduleDataCheckbox);
 
         //Database
         scheduleDatabase = new ScheduleHelper(this);
@@ -70,6 +75,12 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
 
         gridView.setAdapter(customAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                id = ArrayOfId.get(i);
+            }
+        });
 
         //List note
         ArrayOfId.clear();
@@ -114,6 +125,7 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
                 startActivity(intent);
             }
         });
+
     }
 
     //Click back -> close drawer

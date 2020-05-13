@@ -67,16 +67,18 @@ public class ScheduleHelper extends SQLiteOpenHelper {
                 schedule.setID(Integer.parseInt(cursor.getString(0)));
                 schedule.setTitle(cursor.getString(1));
                 schedule.setDate(cursor.getString(2));
-//                schedule.setDone(Integer.parseInt(cursor.getString(3)));
+                schedule.setDone(Integer.parseInt(cursor.getString(3)));
 
                 String id = cursor.getString(0);
                 String title = cursor.getString(1);
                 String date = cursor.getString(2);
-//                String done = cursor.getString(3);
+                String done = cursor.getString(3);
+
                 ScheduleActivity.ArrayOfId.add(id);
                 ScheduleActivity.ArrayOfTitle.add(title);
                 ScheduleActivity.ArrayOfDate.add(date);
-//                ScheduleActivity.ArrayOfDone.add(done);
+                ScheduleActivity.ArrayOfDone.add(done);
+
                 // Adding contact to list
                 schedules.add(schedule);
             } while (cursor.moveToNext());
