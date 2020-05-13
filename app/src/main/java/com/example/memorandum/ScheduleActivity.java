@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
@@ -32,6 +36,8 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
     Button dateButton;
     TextView dateText;
     Button addSchedule;
+    GridView gridView;
+    Button scheduleDelete;
 
     //Database Variables
     ScheduleHelper scheduleDatabase;
@@ -53,9 +59,25 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         dateButton = findViewById(R.id.dateButton);
         dateText = findViewById(R.id.dateText);
         addSchedule = findViewById(R.id.addSchedule);
+        gridView = findViewById(R.id.gridViewSchedule);
+        scheduleDelete = findViewById(R.id.scheduleDelete);
 
         //Database
         scheduleDatabase = new ScheduleHelper(this);
+
+        //Grid View Settings
+
+        ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
+
+        gridView.setAdapter(customAdapter);
+
+        //List note
+        ArrayOfId.clear();
+        ArrayOfTitle.clear();
+        ArrayOfDate.clear();
+        ArrayOfDone.clear();
+        List<Schedule> schedule = scheduleDatabase.getAllSchedules();
+        customAdapter.notifyDataSetChanged();
 
         //Toolbar
         setSupportActionBar(toolbar);
@@ -140,6 +162,36 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         c.set(Calendar.DAY_OF_MONTH, day);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
         dateText.setText(currentDateString);
+    }
+
+    //Grid View Adapter
+    private class CustomAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return ArrayOfId.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
+            View view1 = getLayoutInflater().inflate(R.layout.schedule_data,null);
+            //getting view in row_data
+            TextView title = view1.findViewById(R.id.scheduleDataTitle);
+            title.setText(ArrayOfTitle.get(i));
+
+            return view1;
+
+        }
     }
 
 

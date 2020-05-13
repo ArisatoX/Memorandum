@@ -2,8 +2,12 @@ package com.example.memorandum;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScheduleHelper extends SQLiteOpenHelper {
 
@@ -23,7 +27,7 @@ public class ScheduleHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, date text, is_done boolean);";
+        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, date text, is_done integer);";
 //        Log.d("Data", "onCreate: "+sql);
         db.execSQL(sql);
     }
@@ -40,12 +44,56 @@ public class ScheduleHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, title);
         contentValues.put(COL_3, date);
-        contentValues.put(COL_4, "false");
+        contentValues.put(COL_4, "0");
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1){
             return false;
         }
         else return true;
+    }
+
+    public List<Schedule> getAllSchedules() {
+        List<Schedule> schedules = new ArrayList<Schedule>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Schedule schedule = new Schedule();
+                schedule.setID(Integer.parseInt(cursor.getString(0)));
+                schedule.setTitle(cursor.getString(1));
+                schedule.setDate(cursor.getString(2));
+//                schedule.setDone(Integer.parseInt(cursor.getString(3)));
+
+                String id = cursor.getString(0);
+                String title = cursor.getString(1);
+                String date = cursor.getString(2);
+//                String done = cursor.getString(3);
+                ScheduleActivity.ArrayOfId.add(id);
+                ScheduleActivity.ArrayOfTitle.add(title);
+                ScheduleActivity.ArrayOfDate.add(date);
+//                ScheduleActivity.ArrayOfDone.add(done);
+                // Adding contact to list
+                schedules.add(schedule);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return schedules;
+    }
+
+    // Deleting single schedule
+    public boolean deleteSchedule(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COL_1 + " = ?",
+                new String[] { id });
+        db.close();
+
+        return true;
     }
 
 }

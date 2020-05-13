@@ -38,12 +38,10 @@
                 android:layout_height="150dp"
                 android:background="@color/colorPrimary"
                 android:elevation="4sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.001"
                 app:navigationIcon="@drawable/menu">
 
                 <Button
@@ -61,20 +59,16 @@
             // Calendar
 
             <LinearLayout
+                android:id="@+id/linearLayoutSchedule"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-                <Button
-                    android:id="@+id/dateButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Date Picker" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/dateText"
@@ -84,10 +78,49 @@
                     android:gravity="center"
                     android:text="Date"
                     android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/dateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Date Picker" />
             </LinearLayout>
 
 
-            // Test View
+            // List View
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutSchedule">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <GridView
+                        android:id="@+id/gridViewSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="480dp"
+                        android:horizontalSpacing="1dp"
+                        android:padding="10dp"
+                        android:verticalSpacing="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </GridView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

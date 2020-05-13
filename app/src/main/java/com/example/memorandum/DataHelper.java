@@ -112,7 +112,7 @@ public class DataHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    // Deleting single contact
+    // Deleting single notes
     public boolean deleteNotes(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COL_1 + " = ?",

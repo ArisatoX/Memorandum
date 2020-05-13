@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayOfId.clear();
         ArrayOfName.clear();
         ArrayOfContent.clear();
-        List<Notes> contacts = notesDatabase.getAllNotes();
+        List<Notes> notes = notesDatabase.getAllNotes();
         customAdapter.notifyDataSetChanged();
 
         //Toolbar
