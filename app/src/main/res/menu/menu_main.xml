@@ -12,11 +12,11 @@
             android:icon="@drawable/notes"
             />
 
-        <item
-            android:id="@+id/Checklists"
-            android:title="Checklist"
-            android:icon="@drawable/checklists"
-            />
+<!--        <item-->
+<!--            android:id="@+id/Checklists"-->
+<!--            android:title="Checklist"-->
+<!--            android:icon="@drawable/checklists"-->
+<!--            />-->
 
         <item
             android:id="@+id/Schedule"
@@ -24,11 +24,11 @@
             android:icon="@drawable/schedule"
             />
 
-        <item
-            android:id="@+id/Reminder"
-            android:title="Reminder"
-            android:icon="@drawable/reminder"
-            />
+<!--        <item-->
+<!--            android:id="@+id/Reminder"-->
+<!--            android:title="Reminder"-->
+<!--            android:icon="@drawable/reminder"-->
+<!--            />-->
 
     </group>
 

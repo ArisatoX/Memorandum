@@ -154,10 +154,10 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
                 Intent notes = new Intent(ScheduleActivity.this, MainActivity.class);
                 startActivity(notes);
                 break;
-            case R.id.Checklists:
-                Intent checklists = new Intent(ScheduleActivity.this, ChecklistActivity.class);
-                startActivity(checklists);
-                break;
+//            case R.id.Checklists:
+//                Intent checklists = new Intent(ScheduleActivity.this, ChecklistActivity.class);
+//                startActivity(checklists);
+//                break;
             case R.id.Schedule:
                 break;
         }
