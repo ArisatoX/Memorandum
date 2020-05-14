@@ -73,6 +73,9 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), ScheduleDialog.class);
                 intent.putExtra("id", ArrayOfId.get(i));
+                intent.putExtra("title", ArrayOfTitle.get(i));
+                intent.putExtra("date", ArrayOfDate.get(i));
+                intent.putExtra("done", ArrayOfDone.get(i));
                 startActivity(intent);
             }
         });
