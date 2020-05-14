@@ -27,7 +27,7 @@ public class ScheduleHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, date text, is_done integer);";
+        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, date text, is_done text);";
 //        Log.d("Data", "onCreate: "+sql);
         db.execSQL(sql);
     }
@@ -52,10 +52,10 @@ public class ScheduleHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public List<Schedule> getAllSchedules() {
+    public List<Schedule> getAllSchedules(String request) {
         List<Schedule> schedules = new ArrayList<Schedule>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE date = '" + request +"'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -99,7 +99,7 @@ public class ScheduleHelper extends SQLiteOpenHelper {
     }
 
     // Change is_done
-    public boolean changeDone(String id, int done) {
+    public boolean changeDone(String id, String done) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();

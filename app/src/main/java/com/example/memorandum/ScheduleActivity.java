@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,8 +25,11 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener {
@@ -64,6 +68,13 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         //Database
         scheduleDatabase = new ScheduleHelper(this);
 
+        // Initial Calendar
+        GregorianCalendar calendar = new GregorianCalendar();
+        Date c = calendar.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+        String formattedDate = df.format(c);
+        dateText.setText(formattedDate);
+
         //Grid View Settings
 
         final ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
@@ -85,7 +96,9 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         ArrayOfTitle.clear();
         ArrayOfDate.clear();
         ArrayOfDone.clear();
-        List<Schedule> schedule = scheduleDatabase.getAllSchedules();
+        String temp = dateText.getText().toString();
+        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
+        List<Schedule> schedule = scheduleDatabase.getAllSchedules(temp);
         customAdapter.notifyDataSetChanged();
 
         //Toolbar
