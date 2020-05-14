@@ -3,6 +3,7 @@ package com.example.memorandum;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class ScheduleDialog extends AppCompatActivity {
     boolean isChanged;
     int zero = 0;
     int one = 1;
+    Button scheduleDelete;
 
     //Database Variables
     ScheduleHelper scheduleDatabase;
@@ -34,6 +36,7 @@ public class ScheduleDialog extends AppCompatActivity {
         title = findViewById(R.id.scheduleDialogTitle);
         date = findViewById(R.id.scheduleDialogDate);
         done = findViewById(R.id.scheduleDialogCheckbox);
+        scheduleDelete = findViewById(R.id.scheduleDialogDelete);
 
         //Database
         scheduleDatabase = new ScheduleHelper(this);
@@ -69,13 +72,31 @@ public class ScheduleDialog extends AppCompatActivity {
                 }
 
                 if (isChanged == true){
-                    Toast.makeText(getApplicationContext(), change_status, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "The schedule has been updated", Toast.LENGTH_LONG).show();
                 }
                 else Toast.makeText(ScheduleDialog.this, "Error Occurred", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(ScheduleDialog.this, ScheduleActivity.class);
+                intent.putExtra("date", date.getText().toString());
                 startActivity(intent);
 
+            }
+        });
+
+        //Delete
+        scheduleDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+
+                boolean isDeleted = scheduleDatabase.deleteSchedule(id);
+                if (isDeleted== true){
+                    Toast.makeText(ScheduleDialog.this, "Your schedule has been deleted", Toast.LENGTH_LONG).show();
+                }
+                else Toast.makeText(ScheduleDialog.this, "Error Occurred", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ScheduleDialog.this, ScheduleActivity.class);
+                intent.putExtra("date", date.getText().toString());
+                startActivity(intent);
             }
         });
 

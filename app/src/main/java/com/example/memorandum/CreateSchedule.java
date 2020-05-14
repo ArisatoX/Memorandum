@@ -77,6 +77,7 @@ public class CreateSchedule extends AppCompatActivity implements DatePickerDialo
                 else Toast.makeText(CreateSchedule.this, "Error Occurred", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(CreateSchedule.this, ScheduleActivity.class);
+                intent.putExtra("date", createDateText.getText().toString());
                 startActivity(intent);
             }
         });
