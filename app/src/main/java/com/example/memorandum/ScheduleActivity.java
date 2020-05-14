@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -39,9 +38,6 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
     TextView dateText;
     Button addSchedule;
     GridView gridView;
-    Button scheduleDelete;
-    String id;
-    CheckBox scheduleDataCheckbox;
 
     //Database Variables
     ScheduleHelper scheduleDatabase;
@@ -64,21 +60,20 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         dateText = findViewById(R.id.dateText);
         addSchedule = findViewById(R.id.addSchedule);
         gridView = findViewById(R.id.gridViewSchedule);
-        scheduleDelete = findViewById(R.id.scheduleDelete);
-        scheduleDataCheckbox = findViewById(R.id.scheduleDataCheckbox);
 
         //Database
         scheduleDatabase = new ScheduleHelper(this);
 
         //Grid View Settings
 
-        ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
-
+        final ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
         gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                id = ArrayOfId.get(i);
+                Intent intent = new Intent(getApplicationContext(), ScheduleDialog.class);
+                intent.putExtra("id", ArrayOfId.get(i));
+                startActivity(intent);
             }
         });
 

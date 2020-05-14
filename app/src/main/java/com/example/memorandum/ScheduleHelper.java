@@ -98,5 +98,19 @@ public class ScheduleHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // Change is_done
+    public boolean changeDone(String id, int done) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COL_1, id);
+        values.put(COL_4, done);
+
+        db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
+
+        // update done
+        return true;
+    }
+
 }
 

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateSchedule"></activity>
+        <activity android:name=".ScheduleDialog"></activity>
+        <activity android:name=".CreateSchedule" />
         <activity android:name=".NotesUpdate" />
         <activity android:name=".NotesRead" />
         <activity android:name=".AddNoteActivity" />
