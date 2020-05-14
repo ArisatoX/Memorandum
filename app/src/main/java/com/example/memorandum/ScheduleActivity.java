@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,11 +24,8 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ScheduleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener {
@@ -68,15 +64,11 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         //Database
         scheduleDatabase = new ScheduleHelper(this);
 
-        // Initial Calendar
-        GregorianCalendar calendar = new GregorianCalendar();
-        Date c = calendar.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
-        String formattedDate = df.format(c);
-        dateText.setText(formattedDate);
+        // Set Date
+        Intent intent = getIntent();
+        dateText.setText(intent.getStringExtra("date"));
 
         //Grid View Settings
-
         final ScheduleActivity.CustomAdapter customAdapter = new ScheduleActivity.CustomAdapter();
         gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,7 +89,7 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         ArrayOfDate.clear();
         ArrayOfDone.clear();
         String temp = dateText.getText().toString();
-        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
         List<Schedule> schedule = scheduleDatabase.getAllSchedules(temp);
         customAdapter.notifyDataSetChanged();
 
@@ -185,6 +177,9 @@ public class ScheduleActivity extends AppCompatActivity implements NavigationVie
         c.set(Calendar.DAY_OF_MONTH, day);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
         dateText.setText(currentDateString);
+        Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
+        intent.putExtra("date", dateText.getText().toString());
+        startActivity(intent);
     }
 
     //Grid View Adapter
