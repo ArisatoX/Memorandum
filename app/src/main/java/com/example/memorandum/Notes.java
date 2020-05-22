@@ -1,5 +1,7 @@
 package com.example.memorandum;
 
+import android.graphics.Bitmap;
+
 public class Notes {
 
     //private variables
@@ -7,6 +9,7 @@ public class Notes {
     String title;
     String content;
     String pinned;
+    Bitmap image;
 
     // Empty constructor
     public Notes(){
@@ -21,9 +24,11 @@ public class Notes {
     }
 
     // constructor
-    public Notes(String title, String content){
+    public Notes(String title, String content, String pinned, Bitmap imageToStore){
         this.title = title;
         this.content = content;
+        this.pinned = pinned;
+        this.image = imageToStore;
     }
 
     // getting ID
@@ -65,4 +70,16 @@ public class Notes {
     public void setPinned(String pinned){
         this.pinned = pinned;
     }
+
+    // getting image
+    public Bitmap getImage(){
+        return this.image;
+    }
+
+    // setting image
+    public void setImage(Bitmap image){
+        this.image = image;
+    }
+
+
 }

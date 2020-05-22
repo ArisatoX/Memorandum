@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,14 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String COL_2 = "title";
     private static final String COL_3 = "content";
     private static final String COL_4 = "pinned";
+    private static final String COL_5 = "img";
+
     private static final int DATABASE_VERSION = 1;
     int one = 1;
     int zero = 0;
+
+    ByteArrayOutputStream objectByteArrayOutputStream;
+    byte[] imageInByte;
 
     public DataHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +35,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text);";
+        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text, img blob);";
 //        Log.d("Data", "onCreate: "+sql);
         db.execSQL(sql);
     }
@@ -46,19 +53,6 @@ public class DataHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, title);
         contentValues.put(COL_3, content);
         contentValues.put(COL_4, "0");
-
-        // Insert image
-//        try {
-//            FileInputStream fs = new FileInputStream(image);
-//            byte [] imgbyte = new byte[fs.available()];
-//            fs.read(imgbyte);
-//            ContentValues.put("img", imgbyte);
-//
-//        } catch (FileNotFoundException e) {
-//
-//        } catch (IOException e) {
-//
-//        }
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1){
@@ -177,6 +171,33 @@ public class DataHelper extends SQLiteOpenHelper {
         db.close();
 
         return true;
+    }
+
+    // Store image
+    public boolean storeImage (String id, String title, String content, String pinned, Bitmap imageToStore)
+    {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Bitmap imageToStoreBitmap = imageToStore;
+
+            objectByteArrayOutputStream = new ByteArrayOutputStream();
+            imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, objectByteArrayOutputStream);
+
+            imageInByte = objectByteArrayOutputStream.toByteArray();
+            ContentValues values = new ContentValues();
+            values.put(COL_1, id);
+            values.put(COL_2, title);
+            values.put(COL_3, content);
+            values.put(COL_4, pinned);
+            values.put(COL_5, imageInByte);
+            db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
+
+        } catch (Exception e) {
+
+        }
+
+        return true;
+
     }
 
 }

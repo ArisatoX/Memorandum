@@ -57,37 +57,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/noteReadContent"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="36dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:scrollbars="vertical"
-        android:text="Content"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="380dp"
+        android:layout_height="504dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noteReadTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Button
-        android:id="@+id/notesPin"
-        android:layout_width="88dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="30dp"
-        android:text="Pin"
-        app:layout_constraintBottom_toTopOf="@+id/noteReadContent"
+        <TextView
+            android:id="@+id/noteReadContent"
+            android:layout_width="340dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="29dp"
+            android:scrollbars="vertical"
+            android:text="Content"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notesPin" />
+
+        <Button
+            android:id="@+id/notesPin"
+            android:layout_width="88dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="107dp"
+            android:layout_marginBottom="29dp"
+            android:text="Pin"
+            app:layout_constraintBottom_toTopOf="@+id/noteReadContent"
+            app:layout_constraintStart_toEndOf="@+id/notesAddImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/notesAddImage"
+            android:layout_width="106dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="105dp"
+            android:layout_marginBottom="28dp"
+            android:text="Add Image"
+            app:layout_constraintBottom_toTopOf="@+id/noteReadContent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="378dp"
+        android:layout_height="184dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noteUpdate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/notesImage"
+            android:layout_width="300dp"
+            android:layout_height="113dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/noimage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
