@@ -20,7 +20,6 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String COL_2 = "title";
     private static final String COL_3 = "content";
     private static final String COL_4 = "pinned";
-    private static final String COL_5 = "img";
 
     private static final int DATABASE_VERSION = 1;
     int one = 1;
@@ -35,7 +34,8 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text, img blob);";
+        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text);";
+//        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text, img blob);";
 //        Log.d("Data", "onCreate: "+sql);
         db.execSQL(sql);
     }
@@ -53,6 +53,7 @@ public class DataHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, title);
         contentValues.put(COL_3, content);
         contentValues.put(COL_4, "0");
+//        contentValues.put("img", "default");
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1){
@@ -94,16 +95,23 @@ public class DataHelper extends SQLiteOpenHelper {
                 note.setTitle(cursor.getString(1));
                 note.setContent(cursor.getString(2));
                 note.setPinned(cursor.getString(3));
+//                byte[] imageByteArray = cursor.getBlob(4);
 
                 if (cursor.getString(3).equals(Integer.toString(one))) {
                     String id = cursor.getString(0);
                     String title = cursor.getString(1);
                     String content = cursor.getString(2);
                     String pinned = cursor.getString(3);
+
+//                    ByteArrayInputStream imageStream = new ByteArrayInputStream(imageByteArray);
+//                    Bitmap theImage = BitmapFactory.decodeStream(imageStream);
+//                    Bitmap image = theImage;
+
                     MainActivity.ArrayOfId.add(id);
                     MainActivity.ArrayOfName.add(title);
                     MainActivity.ArrayOfContent.add(content);
                     MainActivity.ArrayOfPinned.add(pinned);
+//                    MainActivity.ArrayOfImage.add(image);
 
                     // Adding contact to list
                     notesList.add(note);
@@ -123,16 +131,23 @@ public class DataHelper extends SQLiteOpenHelper {
                 note.setTitle(cursor.getString(1));
                 note.setContent(cursor.getString(2));
                 note.setPinned(cursor.getString(3));
+//                byte[] imageByteArray = cursor.getBlob(4);
 
                 if (cursor.getString(3).equals(Integer.toString(zero))) {
                     String id = cursor.getString(0);
                     String title = cursor.getString(1);
                     String content = cursor.getString(2);
                     String pinned = cursor.getString(3);
+
+//                    ByteArrayInputStream imageStream = new ByteArrayInputStream(imageByteArray);
+//                    Bitmap theImage = BitmapFactory.decodeStream(imageStream);
+//                    Bitmap image = theImage;
+
                     MainActivity.ArrayOfId.add(id);
                     MainActivity.ArrayOfName.add(title);
                     MainActivity.ArrayOfContent.add(content);
                     MainActivity.ArrayOfPinned.add(pinned);
+//                    MainActivity.ArrayOfImage.add(image);
 
                     // Adding contact to list
                     notesList.add(note);
@@ -189,7 +204,7 @@ public class DataHelper extends SQLiteOpenHelper {
             values.put(COL_2, title);
             values.put(COL_3, content);
             values.put(COL_4, pinned);
-            values.put(COL_5, imageInByte);
+            values.put("img", imageInByte);
             db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
 
         } catch (Exception e) {

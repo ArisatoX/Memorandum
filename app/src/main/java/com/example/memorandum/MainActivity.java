@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static ArrayList<String> ArrayOfName = new ArrayList<String>();
     public static ArrayList<String> ArrayOfContent = new ArrayList<String>();
     public static ArrayList<String> ArrayOfPinned = new ArrayList<String>();
+//    public static ArrayList<Bitmap> ArrayOfImage = new ArrayList<Bitmap>();
 
     //Main
     @Override
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("title", ArrayOfName.get(i));
                 intent.putExtra("content",ArrayOfContent.get(i));
                 intent.putExtra("pinned", ArrayOfPinned.get(i));
+//                intent.putExtra("img", ArrayOfImage.get(i));
                 startActivity(intent);
             }
         });
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayOfName.clear();
         ArrayOfContent.clear();
         ArrayOfPinned.clear();
+//        ArrayOfImage.clear();
         List<Notes> notes = notesDatabase.getAllNotes();
         customAdapter.notifyDataSetChanged();
 

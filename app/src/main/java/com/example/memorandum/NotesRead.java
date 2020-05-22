@@ -163,14 +163,14 @@ public class NotesRead extends AppCompatActivity {
 
                 notesImage.setImageBitmap(imageToStore);
 
-                boolean isAdded = notesDatabase.storeImage(id, title.getText().toString(), content.getText().toString(), pinned, imageToStore);
-                if (isAdded == true){
-                    Toast.makeText(NotesRead.this, "Your image has been added", Toast.LENGTH_LONG).show();
-                }
-                else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(NotesRead.this, MainActivity.class);
-                startActivity(intent);
+//                boolean isAdded = notesDatabase.storeImage(id, title.getText().toString(), content.getText().toString(), pinned, imageToStore);
+//                if (isAdded == true){
+//                    Toast.makeText(NotesRead.this, "Your image has been added", Toast.LENGTH_LONG).show();
+//                }
+//                else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
+//
+//                Intent intent = new Intent(NotesRead.this, MainActivity.class);
+//                startActivity(intent);
 
             }
         }
