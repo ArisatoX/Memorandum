@@ -6,6 +6,7 @@ public class Notes {
     int id;
     String title;
     String content;
+    String pinned;
 
     // Empty constructor
     public Notes(){
@@ -53,5 +54,15 @@ public class Notes {
     // setting content
     public void setContent(String content){
         this.content = content;
+    }
+
+    // getting pinned
+    public String getPinned(){
+        return this.pinned;
+    }
+
+    // setting pinned
+    public void setPinned(String pinned){
+        this.pinned = pinned;
     }
 }

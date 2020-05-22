@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,12 +32,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     Button addNote;
     GridView gridView;
+    int one = 1;
 
     //Database Variables
     DataHelper notesDatabase;
     public static ArrayList<String> ArrayOfId = new ArrayList<String>();
     public static ArrayList<String> ArrayOfName = new ArrayList<String>();
     public static ArrayList<String> ArrayOfContent = new ArrayList<String>();
+    public static ArrayList<String> ArrayOfPinned = new ArrayList<String>();
 
     //Main
     @Override
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("id", ArrayOfId.get(i));
                 intent.putExtra("title", ArrayOfName.get(i));
                 intent.putExtra("content",ArrayOfContent.get(i));
+                intent.putExtra("pinned", ArrayOfPinned.get(i));
                 startActivity(intent);
             }
         });
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayOfId.clear();
         ArrayOfName.clear();
         ArrayOfContent.clear();
+        ArrayOfPinned.clear();
         List<Notes> notes = notesDatabase.getAllNotes();
         customAdapter.notifyDataSetChanged();
 
@@ -164,7 +169,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             View view1 = getLayoutInflater().inflate(R.layout.notes_data,null);
             //getting view in row_data
             TextView title = view1.findViewById(R.id.noteDataTitle);
+            ImageView image = view1.findViewById(R.id.noteDataImage);
             title.setText(ArrayOfName.get(i));
+
+            if (ArrayOfPinned.get(i).equals(Integer.toString(one))){
+                image.setImageResource(R.drawable.pinned);
+            }
+            else {
+
+            }
 
             return view1;
 

@@ -18,7 +18,11 @@ public class NotesRead extends AppCompatActivity {
     Button noteBack;
     Button noteUpdate;
     Button noteDelete;
+    Button notesPin;
     String id;
+    String pinned;
+    int zero = 0;
+    int one = 1;
 
     //Database Variables
     DataHelper notesDatabase;
@@ -34,6 +38,7 @@ public class NotesRead extends AppCompatActivity {
         noteBack = findViewById(R.id.noteBack);
         noteUpdate = findViewById(R.id.noteUpdate);
         noteDelete = findViewById(R.id.noteDelete);
+        notesPin = findViewById(R.id.notesPin);
 
         //Database
         notesDatabase = new DataHelper(this);
@@ -43,6 +48,7 @@ public class NotesRead extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         title.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
+        pinned = getIntent().getStringExtra("pinned");
         content.setMovementMethod(new ScrollingMovementMethod());
 
         // Back Button
@@ -62,6 +68,7 @@ public class NotesRead extends AppCompatActivity {
                 intent.putExtra("id", id);
                 intent.putExtra("title", title.getText().toString());
                 intent.putExtra("content", content.getText().toString());
+                intent.putExtra("pinned", pinned);
                 startActivity(intent);
             }
         });
@@ -76,6 +83,36 @@ public class NotesRead extends AppCompatActivity {
                     Toast.makeText(NotesRead.this, "Your note has been deleted", Toast.LENGTH_LONG).show();
                 }
                 else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(NotesRead.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Pin notes
+        notesPin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+
+                if (pinned.equals(Integer.toString(zero))){
+                    pinned = "1";
+
+                    boolean isUpdated = notesDatabase.updateNotes(id, title.getText().toString(), content.getText().toString(), pinned);
+                    if (isUpdated== true){
+                        Toast.makeText(NotesRead.this, "Your note has been pinned", Toast.LENGTH_LONG).show();
+                    }
+                    else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    pinned = "0";
+
+                    boolean isUpdated = notesDatabase.updateNotes(id, title.getText().toString(), content.getText().toString(), pinned);
+                    if (isUpdated== true){
+                        Toast.makeText(NotesRead.this, "Your note has been unpinned", Toast.LENGTH_LONG).show();
+                    }
+                    else Toast.makeText(NotesRead.this, "Error Occurred", Toast.LENGTH_LONG).show();
+                }
+
 
                 Intent intent = new Intent(NotesRead.this, MainActivity.class);
                 startActivity(intent);

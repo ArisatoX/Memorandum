@@ -17,8 +17,10 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String COL_1 = "id";
     private static final String COL_2 = "title";
     private static final String COL_3 = "content";
+    private static final String COL_4 = "pinned";
     private static final int DATABASE_VERSION = 1;
-
+    int one = 1;
+    int zero = 0;
 
     public DataHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,7 +28,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text);";
+        String sql = "create table " + TABLE_NAME + "(id integer primary key autoincrement, title text, content text, pinned text);";
 //        Log.d("Data", "onCreate: "+sql);
         db.execSQL(sql);
     }
@@ -43,6 +45,21 @@ public class DataHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, title);
         contentValues.put(COL_3, content);
+        contentValues.put(COL_4, "0");
+
+        // Insert image
+//        try {
+//            FileInputStream fs = new FileInputStream(image);
+//            byte [] imgbyte = new byte[fs.available()];
+//            fs.read(imgbyte);
+//            ContentValues.put("img", imgbyte);
+//
+//        } catch (FileNotFoundException e) {
+//
+//        } catch (IOException e) {
+//
+//        }
+
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1){
             return false;
@@ -74,23 +91,62 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
+        // looping through pinned notes
         if (cursor.moveToFirst()) {
             do {
                 Notes note = new Notes();
+
                 note.setID(Integer.parseInt(cursor.getString(0)));
                 note.setTitle(cursor.getString(1));
                 note.setContent(cursor.getString(2));
+                note.setPinned(cursor.getString(3));
 
-                String id = cursor.getString(0);
-                String title = cursor.getString(1);
-                String content = cursor.getString(2);
-                MainActivity.ArrayOfId.add(id);
-                MainActivity.ArrayOfName.add(title);
-                MainActivity.ArrayOfContent.add(content);
-                // Adding contact to list
-                notesList.add(note);
+                if (cursor.getString(3).equals(Integer.toString(one))) {
+                    String id = cursor.getString(0);
+                    String title = cursor.getString(1);
+                    String content = cursor.getString(2);
+                    String pinned = cursor.getString(3);
+                    MainActivity.ArrayOfId.add(id);
+                    MainActivity.ArrayOfName.add(title);
+                    MainActivity.ArrayOfContent.add(content);
+                    MainActivity.ArrayOfPinned.add(pinned);
+
+                    // Adding contact to list
+                    notesList.add(note);
+                } else {
+
+                }
             } while (cursor.moveToNext());
+
+        }
+
+        // looping through unpinned notes
+        if (cursor.moveToFirst()) {
+            do {
+                Notes note = new Notes();
+
+                note.setID(Integer.parseInt(cursor.getString(0)));
+                note.setTitle(cursor.getString(1));
+                note.setContent(cursor.getString(2));
+                note.setPinned(cursor.getString(3));
+
+                if (cursor.getString(3).equals(Integer.toString(zero))) {
+                    String id = cursor.getString(0);
+                    String title = cursor.getString(1);
+                    String content = cursor.getString(2);
+                    String pinned = cursor.getString(3);
+                    MainActivity.ArrayOfId.add(id);
+                    MainActivity.ArrayOfName.add(title);
+                    MainActivity.ArrayOfContent.add(content);
+                    MainActivity.ArrayOfPinned.add(pinned);
+
+                    // Adding contact to list
+                    notesList.add(note);
+                } else {
+
+                }
+            } while (cursor.moveToNext());
+
         }
 
         // return contact list
@@ -98,13 +154,14 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     // Updating single note
-    public boolean updateNotes(String id, String title, String content) {
+    public boolean updateNotes(String id, String title, String content, String pinned) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COL_1, id);
         values.put(COL_2, title);
         values.put(COL_3, content);
+        values.put(COL_4, pinned);
 
         db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
 

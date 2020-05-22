@@ -1,8 +1,6 @@
 package com.example.memorandum;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +14,7 @@ public class NotesUpdate extends AppCompatActivity {
     //Variables
     EditText title;
     EditText content;
+    String pinned;
     Button submit;
     String id;
 
@@ -40,6 +39,7 @@ public class NotesUpdate extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         title.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
+        pinned = getIntent().getStringExtra("pinned");
 
         Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
 
@@ -51,7 +51,7 @@ public class NotesUpdate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean isUpdated = notesDatabase.updateNotes(id, title.getText().toString(), content.getText().toString());
+                boolean isUpdated = notesDatabase.updateNotes(id, title.getText().toString(), content.getText().toString(), pinned);
                 if (isUpdated== true){
                     Toast.makeText(NotesUpdate.this, "Your note has been updated", Toast.LENGTH_LONG).show();
                 }
