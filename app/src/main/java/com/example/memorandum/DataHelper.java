@@ -204,7 +204,7 @@ public class DataHelper extends SQLiteOpenHelper {
             values.put(COL_2, title);
             values.put(COL_3, content);
             values.put(COL_4, pinned);
-            values.put("img", imageInByte);
+//            values.put("img", imageInByte);
             db.update(TABLE_NAME, values, COL_1 + " = ?", new String[] { id });
 
         } catch (Exception e) {
